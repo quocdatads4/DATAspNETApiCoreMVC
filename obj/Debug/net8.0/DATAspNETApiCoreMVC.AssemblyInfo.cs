@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DATAspNETApiCoreMVC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1bd8873d1834c1cdf68a9a3dfd09b7450c9f2160")]
 [assembly: System.Reflection.AssemblyProductAttribute("DATAspNETApiCoreMVC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DATAspNETApiCoreMVC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -61,8 +61,9 @@ public class AuthController : ControllerBase
 		var claims = new[]
 		{
 			new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+			new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
 			new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-			new Claim("api_key", user.ApiKey)
+			new Claim("api_key", user.ApiKey.ToString())
 		};
 
 		var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
@@ -70,12 +71,13 @@ public class AuthController : ControllerBase
 
 		var token = new JwtSecurityToken(
 			issuer: _configuration["Jwt:Issuer"],
-			audience: _configuration["Jwt:Issuer"],
+			audience: _configuration["Jwt:Audience"],
 			claims: claims,
-			expires: DateTime.Now.AddMinutes(30),
+			expires: DateTime.Now.AddMinutes(60),
 			signingCredentials: creds);
+		string tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
 
-		return new JwtSecurityTokenHandler().WriteToken(token);
+		return tokenValue;
 	}
 
 	private string GenerateApiKey()

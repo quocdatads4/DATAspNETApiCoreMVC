@@ -18,6 +18,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 	.AddDefaultTokenProviders();
 
 // Configure JWT Authentication
+var audience = builder.Configuration["Jwt:Audience"];
 var key = builder.Configuration["Jwt:Key"];
 var issuer = builder.Configuration["Jwt:Issuer"];
 
@@ -40,7 +41,7 @@ builder.Services.AddAuthentication(options =>
 		ValidateLifetime = true,
 		ValidateIssuerSigningKey = true,
 		ValidIssuer = issuer,
-		ValidAudience = issuer,
+		ValidAudience = audience,
 		IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
 	};
 });
