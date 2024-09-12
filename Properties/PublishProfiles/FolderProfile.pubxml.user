@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\inetpub\wwwroot\api.datsoftware.com</_PublishTargetUrl>
+    <History>True|2024-09-11T06:46:25.7153116Z||;True|2024-09-11T08:19:32.2304959+07:00||;False|2024-09-11T08:19:04.4411173+07:00||;True|2024-09-11T08:17:05.3671727+07:00||;True|2024-09-11T08:14:14.6581725+07:00||;False|2024-09-11T08:11:43.3637087+07:00||;True|2024-09-11T08:10:20.4168379+07:00||;False|2024-09-11T08:08:53.5393825+07:00||;False|2024-09-10T19:02:55.7768314+07:00||;False|2024-09-10T19:02:22.7476219+07:00||;False|2024-09-10T19:01:57.2142136+07:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

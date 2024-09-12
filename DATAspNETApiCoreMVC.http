@@ -1,0 +1,27 @@
+@DATAspNETApiCoreMVC_HostAddress = https://localhost:7177
+
+GET {{DATAspNETApiCoreMVC_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+GET {{DATAspNETApiCoreMVC_HostAddress}}/weatherforecast
+
+###
+
+GET {{DATAspNETApiCoreMVC_HostAddress}}/weatherforecast
+
+###
+
+POST {{DATAspNETApiCoreMVC_HostAddress}}/api/auth/register
+Content-Type: application/json
+
+{
+  //RegisterModel
+}
+
+###
+
+GET {{DATAspNETApiCoreMVC_HostAddress}}/weatherforecast
+
+###
