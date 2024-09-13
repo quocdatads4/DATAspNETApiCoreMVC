@@ -1,6 +1,8 @@
-﻿using DATAspNETApiCoreMVC.Models;
+﻿using DATAspNETApiCoreMVC.Data;
+using DATAspNETApiCoreMVC.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -13,13 +15,13 @@ public class AuthController : ControllerBase
 	private readonly UserManager<ApplicationUser> _userManager;
 	private readonly SignInManager<ApplicationUser> _signInManager;
 	private readonly IConfiguration _configuration;
-
-
-	public AuthController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IConfiguration configuration)
+	private readonly ApplicationDbContext _context;
+	public AuthController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ApplicationDbContext context, IConfiguration configuration)
 	{
 		_userManager = userManager;
 		_signInManager = signInManager;
 		_configuration = configuration;
+		_context = context;
 	}
 
 	[HttpPost("register")]
@@ -34,6 +36,15 @@ public class AuthController : ControllerBase
 		var result = await _userManager.CreateAsync(user, model.Password);
 		if (result.Succeeded)
 		{
+			// Thêm vào bảng AspNetUserAccounts
+			var userAccount = new UserAccountModel
+			{
+				UserID = user.Id, // Id từ bảng AspNetUsers
+			};
+			_context.AspNetUserAccounts.Add(userAccount);
+			await _context.SaveChangesAsync();
+
+
 			return Ok(new { ApiKey = user.ApiKey});
 		}
 
@@ -60,11 +71,10 @@ public class AuthController : ControllerBase
 	{
 		var claims = new[]
 		{
-			new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-			new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-			new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-			new Claim("api_key", user.ApiKey.ToString())
-		};
+		new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+		new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+		new Claim("api_key", user.ApiKey.ToString())
+	};
 
 		var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
 		var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -75,9 +85,8 @@ public class AuthController : ControllerBase
 			claims: claims,
 			expires: DateTime.Now.AddMinutes(60),
 			signingCredentials: creds);
-		string tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
 
-		return tokenValue;
+		return new JwtSecurityTokenHandler().WriteToken(token);
 	}
 
 	private string GenerateApiKey()

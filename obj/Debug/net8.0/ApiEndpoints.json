@@ -1,5 +1,114 @@
 [
   {
+    "ContainingType": "DATAspNETApiCoreMVC.Controllers.AccountController",
+    "Method": "GetUserAccounts",
+    "RelativePath": "api/Account",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[DATAspNETApiCoreMVC.Models.UserAccountModel, DATAspNETApiCoreMVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DATAspNETApiCoreMVC.Controllers.AccountController",
+    "Method": "PostUserAccount",
+    "RelativePath": "api/Account",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userAccount",
+        "Type": "DATAspNETApiCoreMVC.Models.UserAccountModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "DATAspNETApiCoreMVC.Models.UserAccountModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DATAspNETApiCoreMVC.Controllers.AccountController",
+    "Method": "PutUserAccount",
+    "RelativePath": "api/Account/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "userAccount",
+        "Type": "DATAspNETApiCoreMVC.Models.UserAccountModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DATAspNETApiCoreMVC.Controllers.AccountController",
+    "Method": "DeleteUserAccount",
+    "RelativePath": "api/Account/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DATAspNETApiCoreMVC.Controllers.AccountController",
+    "Method": "GetUserAccount",
+    "RelativePath": "api/Account/{UserId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "DATAspNETApiCoreMVC.Models.UserAccountModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "AuthController",
     "Method": "Login",
     "RelativePath": "api/Auth/login",
